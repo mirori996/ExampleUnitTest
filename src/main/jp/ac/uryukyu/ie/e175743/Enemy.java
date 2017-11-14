@@ -20,6 +20,8 @@ public class Enemy extends LivingThing {
         super(name, maximumHP, attack);
     }
 
+    int hp =getHitPoint();
+
     /**
      * 自身へ攻撃されたときのダメージ処理をするメソッド。
      * 指定されたダメージを hitPoint から引き、死亡判定を行う。
@@ -27,10 +29,10 @@ public class Enemy extends LivingThing {
      */
     @Override
     public void wounded(int damage){
-        hitPoint -= damage;
-        if( hitPoint < 0 ) {
-            dead = true;
-            System.out.printf("モンスター%sは倒れた。\n", name);
+        hp -= damage;
+        if( hp < 0 ) {
+            setDead(true);
+            System.out.printf("モンスター%sは倒れた。\n", getName());
         }
     }
 
